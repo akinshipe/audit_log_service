@@ -50,7 +50,7 @@ Requirements for standard deployment
 1. Clone the repository or use the downloaded tar.gz archive:
 
     ```bash
-    git clone https://github.com/yourgithubusername/audit-log-service.git
+    git clone https://github.com/akinshipe/audit_log_service.git
 
 
     ```
