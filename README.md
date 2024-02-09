@@ -161,7 +161,7 @@ For a detailed overview of all API endpoints and their specifications, refer to 
 
 For production deployments, it is highly recommended to use established distributed systems such as RabbitMQ or Kafka for queue management. These systems offer enhanced reliability and resilience, ensuring that your service can maintain robust performance and handle consumer thread failures effectively.
 If you want to use this custom implementation, atleast implement automatic thread recovery for the consumer, this will make the system more resilient. This not only improves fault tolerance but also allows the service to scale more effectively in response to varying loads. Also make sure
-you implement proper shut down for the application, so that it processes events in the queue before shutting down to avoid event loss.
+you implement alternative event storage solution for the system for more resilency incase something goes wrong.
 
 #### Use Production Grade Database
 
