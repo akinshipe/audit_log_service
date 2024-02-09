@@ -29,15 +29,9 @@ if ! command -v pip &> /dev/null; then
     fi
 fi
 
-# Check for venv
-if ! command -v python3 -m venv &> /dev/null; then
-    echo "venv could not be found. Installing venv."
-    sudo apt install python3-venv
-    if [ $? -ne 0 ]; then
-        echo "Failed to install venv. Exiting..."
-        exit 1
-    fi
-fi
+sudo apt install python3.10-venv
+
+
 
 # Create a virtual environment using venv
 python3 -m venv venv
