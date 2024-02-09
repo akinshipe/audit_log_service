@@ -1,0 +1,55 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+default_language_version:
+  python: python3
+exclude: |
+ (?x)^(
+   \.?venv/.*
+ )$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: no-commit-to-branch
+      - id: fix-byte-order-marker # Removes UTF-8 byte order marker
+      - id: check-case-conflict   # Check for files with names that would conflict
+      - id: mixed-line-ending     # Replaces or checks mixed line ending.
+      - id: end-of-file-fixer     # Add newline to end of files
+      - id: trailing-whitespace   # Remove trailing spaces
+        args: [ --markdown-linebreak-ext=md ]
+        exclude: ^\.github/.*$
+      - id: check-merge-conflict  # Check for merge conflict strings
+      - id: check-yaml            # Attempts to load all yaml files to verify syntax.
+        exclude: |
+          (?x)^(
+            charts/.*/templates/.*|
+            .*/api_docs/swagger.yaml|
+            metadata/index.yaml
+          )$
+
+  - repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8  # Run flake8 against staged files
+        args: [ --config=setup.cfg ]
+        additional_dependencies: [
+            "flake8-blind-except",
+            "flake8-tidy-imports",
+        ]
+
+#  - repo: https://github.com/pycqa/isort
+#    rev: 5.11.4
+#    hooks:
+#      - id: isort
+
+#  - repo: https://github.com/asottile/pyupgrade
+#    rev: v3.3.1
+#    hooks:
+#      - id: pyupgrade
+#        args: [ --py39-plus ]
